@@ -1,9 +1,10 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import { themes } from "@/components/themes";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useState } from "react";
 import { useFonts } from "expo-font";
 import { Link, type ExternalPathString, type RelativePathString, type UnknownInputParams } from "expo-router";
+import { Button } from "./Button";
 
 type LinkProps = {
     link:
@@ -30,7 +31,6 @@ export const LinkComponent = ({ link, label, type, icon, disabled }: LinkProps) 
 
     const linkStyles = StyleSheet.flatten([
         styles.button,
-
         type === "primary" && styles.primary,
         type === "outline" && styles.outline,
         type === "danger" && styles.danger,
@@ -39,15 +39,8 @@ export const LinkComponent = ({ link, label, type, icon, disabled }: LinkProps) 
     ]);
 
     return (
-        <Link
-            href={link}
-            style={linkStyles}
-            disabled={disabled}
-            onPressIn={() => setIsHovered(true)}
-            onPressOut={() => setIsHovered(false)}
-        >
-            {icon && <MaterialIcons name={icon} size={24} color={disabled ? "#aaa" : "#000"} />}
-            <Text style={styles.label}>{label}</Text>
+        <Link asChild href={link} disabled={disabled}>
+            <Button onPress={() => alert("Clicked")} label={label} type="primary" icon={icon} disabled={disabled} />
         </Link>
     );
 };
@@ -65,6 +58,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: "#000",
         shadowColor: "#000",
+        fontFamily: themes.fontFace.fontFamily,
         shadowOffset: {
             width: 4,
             height: 4,
@@ -98,7 +92,7 @@ const styles = StyleSheet.create({
         color: "#000",
         fontWeight: "bold",
         fontSize: 16,
-        fontFamily: "Bebas Neue",
+        fontFamily: themes.fontFace.fontFamily,
     },
     labelDisabled: {
         color: "#aaa",

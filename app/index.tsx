@@ -6,7 +6,7 @@ import { useFonts } from "expo-font";
 import { Link } from "expo-router";
 import LinkComponent from "@/components/ui/Button/Link";
 
-const heroImage = require("./../assets/static/hero.png");
+const heroImage = require("./../assets/images/hero.png");
 export default function Index() {
     const [loaded, error] = useFonts({
         "Bebas Neue": require("./../assets/fonts/BebasNeue-Regular.ttf"),
@@ -22,7 +22,7 @@ export default function Index() {
                 </Text>
             </View>
             {/* <Button onPress={() => alert("Clicked")} label="Get Started" type="primary" /> */}
-            <LinkComponent link="/auth/sign-up" label="Get Started" type="primary" />
+            <LinkComponent link="/auth/sign-up" label="Get Started" type="primary" icon="arrow-forward" />
         </View>
     );
 }

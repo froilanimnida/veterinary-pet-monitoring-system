@@ -10,6 +10,7 @@ export default function AuthLayout() {
                 navigationBarColor: "transparent",
                 statusBarBackgroundColor: "transparent",
                 headerBackButtonDisplayMode: "default",
+                navigationBarTranslucent: true,
             }}
         >
             <Stack.Screen name="login" options={{}} />

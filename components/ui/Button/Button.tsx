@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, Platform } from "react-native";
 import { themes } from "@/components/themes";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useState } from "react";
@@ -14,9 +14,6 @@ type ButtonProps = {
 
 export const Button = ({ onPress, label, type, icon, disabled }: ButtonProps) => {
     const [isHovered, setIsHovered] = useState(false);
-    const [loaded, error] = useFonts({
-        "Bebas Neue": require("./../../../assets/fonts/BebasNeue-Regular.ttf"),
-    });
 
     const buttonStyles = StyleSheet.flatten([
         styles.button,
@@ -43,8 +40,6 @@ export const Button = ({ onPress, label, type, icon, disabled }: ButtonProps) =>
 
 const styles = StyleSheet.create({
     button: {
-        transitionDelay: "0s",
-        transitionDuration: "0.2s",
         fontFamily: "Bebas Neue",
         borderRadius: 4,
         alignItems: "center",
@@ -55,13 +50,8 @@ const styles = StyleSheet.create({
         padding: 16,
         borderWidth: 2,
         borderColor: "#000",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 4,
-            height: 4,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 0,
+        boxShadow: "4px 4px 0px 0px #000",
+        transitionDelay: "1s",
     },
     primary: {
         backgroundColor: themes.primaryColor.backgroundColor,
@@ -76,10 +66,7 @@ const styles = StyleSheet.create({
         borderColor: "#000",
     },
     hovered: {
-        shadowOffset: {
-            width: 1,
-            height: 1,
-        },
+        boxShadow: "2px 2px 0px 0px #000",
     },
     disabled: {
         backgroundColor: "#ddd",
